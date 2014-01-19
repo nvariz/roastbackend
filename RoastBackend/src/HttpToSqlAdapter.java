@@ -88,9 +88,9 @@ public class HttpToSqlAdapter {
 	}
 	
 	/*
-	 * To Query Database for any drink containing the string "drink" send HTTP request to: 
-	 * "<EC2IP>:8080/roast/FindMyDrink?drink="<drink search string>""
-	 * This executes the following MYSQL query: "SELECT name FROM roast.drinks where name like '%" + drink + "%'"
+	 * To Query Database for any cafe containing the string "cafe" send HTTP request to: 
+	 * "<EC2IP>:8080/roast/FindACafe?cafe="<cafe search string>""
+	 * This executes the following MYSQL query: "SELECT name FROM roast.cafes where name like '%" + cafe + "%'"
 	 * 
 	 */
 	public void findACafe(String cafe){
