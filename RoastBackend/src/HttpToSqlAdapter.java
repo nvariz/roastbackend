@@ -97,5 +97,16 @@ public class HttpToSqlAdapter {
 		String query = "SELECT name FROM roast.cafes where name like '%" + cafe + "%'";
 		queryDatabase(query, "name");
 	}
+	
+	/*
+	 * To Query Database for any cafe containing the string "cafe" send HTTP request to: 
+	 * "<EC2IP>:8080/roast/FindACafe?cafe="<cafe search string>""
+	 * This executes the following MYSQL query: "SELECT name FROM roast.cafes where name like '%" + cafe + "%'"
+	 * 
+	 */
+	public void listAllDrinks(){
+		String query = "SELECT * FROM roast.drinks";
+		queryDatabase(query, "name");
+	}
 		
 }
