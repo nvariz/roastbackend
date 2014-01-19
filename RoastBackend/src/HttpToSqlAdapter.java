@@ -88,6 +88,17 @@ public class HttpToSqlAdapter {
 	}
 	
 	/*
+	 * Query Database for all tuples in roast.drinks: 
+	 * "<EC2IP>:8080/roast/ListAllDrinks"
+	 * This executes the following MYSQL query: "SELECT * FROM roast.drinks"
+	 * 
+	 */
+	public void listAllDrinks(){
+		String query = "SELECT * FROM roast.drinks";
+		queryDatabase(query, "name");
+	}
+	
+	/*
 	 * To Query Database for any cafe containing the string "cafe" send HTTP request to: 
 	 * "<EC2IP>:8080/roast/FindACafe?cafe="<cafe search string>""
 	 * This executes the following MYSQL query: "SELECT name FROM roast.cafes where name like '%" + cafe + "%'"
@@ -99,14 +110,14 @@ public class HttpToSqlAdapter {
 	}
 	
 	/*
-	 * To Query Database for any cafe containing the string "cafe" send HTTP request to: 
-	 * "<EC2IP>:8080/roast/FindACafe?cafe="<cafe search string>""
-	 * This executes the following MYSQL query: "SELECT name FROM roast.cafes where name like '%" + cafe + "%'"
+	 * Query Database for all tuples in roast.cafes: 
+	 * "<EC2IP>:8080/roast/ListAllCafes"
+	 * This executes the following MYSQL query: "SELECT * FROM roast.cafes"
 	 * 
 	 */
-	public void listAllDrinks(){
-		String query = "SELECT * FROM roast.drinks";
+	public void listAllCafes(){
+		String query = "SELECT * FROM roast.cafes";
 		queryDatabase(query, "name");
 	}
-		
+
 }
