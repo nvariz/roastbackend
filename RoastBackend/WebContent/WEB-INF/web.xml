@@ -8,9 +8,19 @@
 		<description></description>
 		<servlet-class>FindMyDrink</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>FindACafe</servlet-name>
+		<display-name>FindACafe</display-name>
+		<description></description>
+		<servlet-class>FindACafe</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>FindMyDrink</servlet-name>
 		<url-pattern>/FindMyDrink</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FindACafe</servlet-name>
+		<url-pattern>/FindACafe</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

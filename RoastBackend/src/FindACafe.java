@@ -11,27 +11,23 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 /**
- * Servlet implementation class FindMyDrink
+ * Servlet implementation class FindACafe
  */
-public class FindMyDrink extends HttpServlet {
+public class FindACafe extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FindMyDrink() {
+    public FindACafe() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String d = request.getParameter("drink");
-		//int p =  Integer.parseInt(request.getParameter("p"));
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String c = request.getParameter("cafe");
 		HttpToSqlAdapter driver = new HttpToSqlAdapter();
-		driver.findADrink(d);
+		driver.findACafe(c);
 		
 		PrintWriter out = response.getWriter();
 		
