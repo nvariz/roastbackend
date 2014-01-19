@@ -28,8 +28,6 @@ public class ListAllDrinks extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//String d = request.getParameter("drink");
-		//int p =  Integer.parseInt(request.getParameter("p"));
 		HttpToSqlAdapter driver = new HttpToSqlAdapter();
 		driver.listAllDrinks();
 		
