@@ -14,6 +14,12 @@
 		<description></description>
 		<servlet-class>FindACafe</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ListAllDrinks</servlet-name>
+		<display-name>ListAllDrinks</display-name>
+		<description></description>
+		<servlet-class>ListAllDrinks</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>FindMyDrink</servlet-name>
 		<url-pattern>/FindMyDrink</url-pattern>
@@ -21,6 +27,10 @@
 	<servlet-mapping>
 		<servlet-name>FindACafe</servlet-name>
 		<url-pattern>/FindACafe</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ListAllDrinks</servlet-name>
+		<url-pattern>/ListAllDrinks</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
