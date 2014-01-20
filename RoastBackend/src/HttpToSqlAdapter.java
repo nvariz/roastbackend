@@ -58,8 +58,48 @@ public class HttpToSqlAdapter {
 			    } ;
 			}
 
-		}
+	}
 
+	//Generic Insert Record into database
+	private void insertDatabase(String record){
+		Connection con = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		String command = null;
+		
+		try{
+
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+		    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/roast?user=roastapp&password=roastapp");
+		    stmt = con.createStatement();
+		    command = "insert into roast.drinks values('" + record + "')";
+		    rs = stmt.executeQuery(command);
+		    
+		   } catch (Exception e) {
+		       e.printStackTrace();
+			      
+		   }finally {
+		        try {
+		            stmt.close();
+		        } catch (Exception e) {
+			    } ;
+			    try {
+			        rs.close();
+			    } catch (Exception e) {
+			    };
+			    try {
+			    	con.close();
+			    } catch (Exception e) {
+			    } ;
+			}
+
+	}
+	
+	//Insert a new Drink into the database
+	public void insertDrink(String name){
+		insertDatabase(name);
+	}
+	
 	/*
 	 * Given a result set of servlet's MySQL query, add the requested relation fields to arraylist
 	 */
