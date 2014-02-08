@@ -11,15 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 /**
- * Servlet implementation class FindMyDrink
+ * Servlet implementation class GetCafeFoods
  */
-public class FindMyDrink extends HttpServlet {
+public class GetCafeFoods extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FindMyDrink() {
+    public GetCafeFoods() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,17 +28,16 @@ public class FindMyDrink extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String d = request.getParameter("drink");
+		String d = request.getParameter("cafe");
 		//int p =  Integer.parseInt(request.getParameter("p"));
 		HttpToSqlAdapter driver = new HttpToSqlAdapter();
-		driver.findADrink(d);
+		driver.getCafeFoods(d);
 		
 		PrintWriter out = response.getWriter();
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(driver);
 		out.write(json);
-
 	}
 
 	/**

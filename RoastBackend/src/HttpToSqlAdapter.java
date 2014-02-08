@@ -8,15 +8,18 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 public class HttpToSqlAdapter {
 
 	//This result will be used converted to JSON by the calling Servlet
-	private ArrayList<String> results = new ArrayList<String>();
-	
+	private ArrayList<String> drinkNames = new ArrayList<String>();
+	private ArrayList<String> foodNames = new ArrayList<String>();
+	private ArrayList<String> descriptions = new ArrayList<String>();
+	private ArrayList<String> prices = new ArrayList<String>();
+	private ArrayList<String> types = new ArrayList<String>();
+
 	/* Common class to query DB via JDBC, performs the following:
 	 * 
 	 * 1) Connect to MySql database on port 3306 using user/pass = roastapp/roastapp
@@ -26,7 +29,7 @@ public class HttpToSqlAdapter {
 	 * 
 	 * TODO: Implement connection pooling, this implementation is highly inefficient
 	 */
-	private void queryDatabase(String query, String filter){
+	private void queryDatabaseForCafeDrinks(String query, String filter){
 		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -38,7 +41,27 @@ public class HttpToSqlAdapter {
 		    stmt = con.createStatement();
 		    rs = stmt.executeQuery(query);
 			          
-		    filterResults(results, rs, filter);
+		    String drinkName = null;
+			String description = null;
+			String price = null;
+			String type = null;
+			
+			if (rs == null)
+				return;
+			else if(filter == null){
+				drinkName = rs.getString("drinkName");
+				drinkNames.add(drinkName);
+			}
+			while (rs.next() ) {
+		        drinkName = rs.getString("drinkName");	  
+		        drinkNames.add(drinkName);
+		        description = rs.getString("description");	  
+		        descriptions.add(description);
+		        price = rs.getString("price");	  
+		        prices.add(price);
+		        type = rs.getString("type");	  
+		        types.add(type);
+		   }
 		    
 		   } catch (Exception e) {
 		       e.printStackTrace();
@@ -60,8 +83,61 @@ public class HttpToSqlAdapter {
 
 	}
 
+	private void queryDatabaseForCafeFood(String query, String filter){
+		Connection con = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		try{
+
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+		    con = DriverManager.getConnection("jdbc:mysql://localhost:3306/roast?user=roastapp&password=roastapp");
+		    stmt = con.createStatement();
+		    rs = stmt.executeQuery(query);
+			          
+		    String foodName = null;
+			String description = null;
+			String price = null;
+			String type = null;
+			
+			if (rs == null)
+				return;
+			else if(filter == null){
+				foodName = rs.getString("foodName");
+				foodNames.add(foodName);
+			}
+			while (rs.next() ) {
+		        foodName = rs.getString("foodName");	  
+		        foodNames.add(foodName);
+		        description = rs.getString("description");	  
+		        descriptions.add(description);
+		        price = rs.getString("price");	  
+		        prices.add(price);
+		        type = rs.getString("type");	  
+		        types.add(type);
+		   }
+		    
+		   } catch (Exception e) {
+		       e.printStackTrace();
+			      
+		   }finally {
+		        try {
+		            stmt.close();
+		        } catch (Exception e) {
+			    } ;
+			    try {
+			        rs.close();
+			    } catch (Exception e) {
+			    };
+			    try {
+			    	con.close();
+			    } catch (Exception e) {
+			    } ;
+			}
+
+	}
 	//Generic Insert Record into database
-	private void insertDatabase(String record){
+	/*private void insertDatabase(String record){
 		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -99,65 +175,23 @@ public class HttpToSqlAdapter {
 	public void insertDrink(String name){
 		insertDatabase(name);
 	}
+	*/
 	
-	/*
-	 * Given a result set of servlet's MySQL query, add the requested relation fields to arraylist
-	 */
-	private void filterResults(ArrayList<String> results, ResultSet rs, String filter) throws SQLException{
-		
-		String name = null;
-		
-		if (rs == null || filter == null)
-			return;
-		while (rs.next() ) {
-	    	name = rs.getString("name");	  
-	        results.add(name);
-	   }
-		
-	}
 	
 	/*
 	 * To Query Database for any drink containing the string "drink" send HTTP request to: 
-	 * "<EC2IP>:8080/roast/FindMyDrink?drink="<drink search string>""
-	 * This executes the following MYSQL query: "SELECT name FROM roast.drinks where name like '%" + drink + "%'"
+	 * "<EC2IP>:8080/roast/GetCafeDrinks?cafe="<cafe contains search>""
+	 * This executes the following MYSQL query: "SELECT * FROM roast.drinks where name like '%" + cafe + "%'"
 	 * 
 	 */
-	public void findADrink(String drink){
-		String query = "SELECT name FROM roast.drinks where name like '%" + drink + "%'";
-		queryDatabase(query, "name");
+	public void getCafeDrinks(String cafe){
+		String query = "SELECT drinkName,description,price,type FROM roast.drinks where shopName like '%" + cafe + "%'";
+		queryDatabaseForCafeDrinks(query, "cafe");
 	}
 	
-	/*
-	 * Query Database for all tuples in roast.drinks: 
-	 * "<EC2IP>:8080/roast/ListAllDrinks"
-	 * This executes the following MYSQL query: "SELECT * FROM roast.drinks"
-	 * 
-	 */
-	public void listAllDrinks(){
-		String query = "SELECT * FROM roast.drinks";
-		queryDatabase(query, "name");
-	}
-	
-	/*
-	 * To Query Database for any cafe containing the string "cafe" send HTTP request to: 
-	 * "<EC2IP>:8080/roast/FindACafe?cafe="<cafe search string>""
-	 * This executes the following MYSQL query: "SELECT name FROM roast.cafes where name like '%" + cafe + "%'"
-	 * 
-	 */
-	public void findACafe(String cafe){
-		String query = "SELECT name FROM roast.cafes where name like '%" + cafe + "%'";
-		queryDatabase(query, "name");
-	}
-	
-	/*
-	 * Query Database for all tuples in roast.cafes: 
-	 * "<EC2IP>:8080/roast/ListAllCafes"
-	 * This executes the following MYSQL query: "SELECT * FROM roast.cafes"
-	 * 
-	 */
-	public void listAllCafes(){
-		String query = "SELECT * FROM roast.cafes";
-		queryDatabase(query, "name");
+	public void getCafeFoods(String cafe){
+		String query = "SELECT foodName,description,price,type FROM roast.food where shopName like '%" + cafe + "%'";
+		queryDatabaseForCafeFood(query, "cafe");
 	}
 
 }

@@ -32,6 +32,18 @@
 		<description></description>
 		<servlet-class>ModifyDrink</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>GetCafeDrinks</servlet-name>
+		<display-name>GetCafeDrinks</display-name>
+		<description></description>
+		<servlet-class>GetCafeDrinks</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>GetCafeFoods</servlet-name>
+		<display-name>GetCafeFoods</display-name>
+		<description></description>
+		<servlet-class>GetCafeFoods</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>FindMyDrink</servlet-name>
 		<url-pattern>/FindMyDrink</url-pattern>
@@ -52,6 +64,15 @@
 		<servlet-name>ModifyDrink</servlet-name>
 		<url-pattern>/ModifyDrink</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetCafeDrinks</servlet-name>
+		<url-pattern>/GetCafeDrinks</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetCafeFoods</servlet-name>
+		<url-pattern>/GetCafeFoods</url-pattern>
+	</servlet-mapping>
+	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>
