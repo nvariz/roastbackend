@@ -44,6 +44,12 @@
 		<description></description>
 		<servlet-class>GetCafeFoods</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>GetCafeImages</servlet-name>
+		<display-name>GetCafeImages</display-name>
+		<description></description>
+		<servlet-class>GetCafeImages</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>FindMyDrink</servlet-name>
 		<url-pattern>/FindMyDrink</url-pattern>
@@ -71,6 +77,10 @@
 	<servlet-mapping>
 		<servlet-name>GetCafeFoods</servlet-name>
 		<url-pattern>/GetCafeFoods</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetCafeImages</servlet-name>
+		<url-pattern>/GetCafeImages</url-pattern>
 	</servlet-mapping>
 	
 	<welcome-file-list>
