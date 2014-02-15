@@ -1,5 +1,6 @@
 
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -30,7 +31,7 @@ public class GetCafeGear extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String d = request.getParameter("cafe");
 
-		HttpToSqlAdapter driver = new HttpToSqlAdapter();
+		CafeGearDBServlet driver = new CafeGearDBServlet();
 		driver.getCafeGear(d);
 		
 		PrintWriter out = response.getWriter();
@@ -38,13 +39,6 @@ public class GetCafeGear extends HttpServlet {
 		Gson gson = new Gson();
 		String json = gson.toJson(driver);
 		out.write(json);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }
