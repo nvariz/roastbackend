@@ -22,6 +22,7 @@ public class CafeFoodDBServlet extends HttpServlet {
 	private ArrayList<String> descriptions = new ArrayList<String>();
 	private ArrayList<String> prices = new ArrayList<String>();
 	private ArrayList<String> types = new ArrayList<String>();
+	private ArrayList<String> imageNames = new ArrayList<String>();
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -47,6 +48,7 @@ public class CafeFoodDBServlet extends HttpServlet {
 			String description = null;
 			String price = null;
 			String type = null;
+			String imageName = null;
 			
 			if (rs == null)
 				return;
@@ -63,6 +65,8 @@ public class CafeFoodDBServlet extends HttpServlet {
 		        prices.add(price);
 		        type = rs.getString("type");	  
 		        types.add(type);
+		        imageName = rs.getString("imageName");
+		        imageNames.add(imageName);
 		   }
 		    
 		   } catch (Exception e) {
@@ -86,7 +90,7 @@ public class CafeFoodDBServlet extends HttpServlet {
 	}
 	
 	public void getCafeFoods(String cafe){
-		String query = "SELECT foodName,description,price,type FROM roast.food where shopName like '%" + cafe + "%'";
+		String query = "SELECT foodName,description,price,type,imageName FROM roast.food where shopName like '%" + cafe + "%'";
 		queryDatabaseForCafeFood(query, "cafe");
 	}
 }

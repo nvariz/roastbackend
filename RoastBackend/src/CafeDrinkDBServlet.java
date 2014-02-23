@@ -18,6 +18,7 @@ public class CafeDrinkDBServlet {
 	private ArrayList<String> descriptions = new ArrayList<String>();
 	private ArrayList<String> prices = new ArrayList<String>();
 	private ArrayList<String> types = new ArrayList<String>();
+	private ArrayList<String> imageNames = new ArrayList<String>();
 
 	/* 1) Connect to MySql database on port 3306 using user/pass = roastapp/roastapp
 	 * 2) Execute query passed in from servlet
@@ -42,6 +43,7 @@ public class CafeDrinkDBServlet {
 			String description = null;
 			String price = null;
 			String type = null;
+			String imageName = null;
 			
 			if (rs == null)
 				return;
@@ -58,6 +60,8 @@ public class CafeDrinkDBServlet {
 		        prices.add(price);
 		        type = rs.getString("type");	  
 		        types.add(type);
+		        imageName = rs.getString("imageName");
+		        imageNames.add(imageName);
 		   }
 		    
 		   } catch (Exception e) {
@@ -87,7 +91,7 @@ public class CafeDrinkDBServlet {
 	 * 
 	 */
 	public void getCafeDrinks(String cafe){
-		String query = "SELECT drinkName,description,price,type FROM roast.drinks where shopName like '%" + cafe + "%'";
+		String query = "SELECT drinkName,description,price,type,imageName FROM roast.drinks where shopName like '%" + cafe + "%'";
 		queryDatabaseForCafeDrinks(query, "cafe");
 	}
 }
