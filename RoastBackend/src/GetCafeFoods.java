@@ -29,7 +29,6 @@ public class GetCafeFoods extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String d = request.getParameter("cafe");
-		//int p =  Integer.parseInt(request.getParameter("p"));
 		CafeFoodDBServlet driver = new CafeFoodDBServlet();
 		driver.getCafeFoods(d);
 		

@@ -21,8 +21,8 @@ public class CafeGearDBServlet extends HttpServlet {
 	private ArrayList<String> gearNames = new ArrayList<String>();
 	private ArrayList<String> descriptions = new ArrayList<String>();
 	private ArrayList<String> prices = new ArrayList<String>();
-	private ArrayList<String> types = new ArrayList<String>();
 	private ArrayList<String> imageNames = new ArrayList<String>();
+	private ArrayList<Integer> ids = new ArrayList<Integer>();
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -47,8 +47,8 @@ public class CafeGearDBServlet extends HttpServlet {
 		    String gearName = null;
 			String description = null;
 			String price = null;
-			String type = null;
 			String imageName = null;
+			int id;
 			
 			if (rs == null)
 				return;
@@ -63,10 +63,10 @@ public class CafeGearDBServlet extends HttpServlet {
 		        descriptions.add(description);
 		        price = rs.getString("price");	  
 		        prices.add(price);
-		        type = rs.getString("type");	  
-		        types.add(type);
 		        imageName = rs.getString("imageName");
 		        imageNames.add(imageName);
+		        id = rs.getInt("id");
+		        ids.add(id);
 		   }
 		    
 		   } catch (Exception e) {
@@ -90,7 +90,7 @@ public class CafeGearDBServlet extends HttpServlet {
 	}
 	
 	public void getCafeGear(String cafe){
-		String query = "SELECT gearName,description,price,type,imageName FROM roast.gear where shopName like '%" + cafe + "%'";
+		String query = "SELECT gearName,description,price,imageName,id FROM roast.gear where shopName like '%" + cafe + "%'";
 		queryDatabaseForCafeGear(query, "cafe");
 	}
 }
