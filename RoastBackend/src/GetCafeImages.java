@@ -1,4 +1,8 @@
-
+/**
+ * This servlet allows retrieval of images from Roast EC2 server via REST API
+ * 
+ * @author Nicholas Variz
+ */
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -17,14 +21,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class GetCafeImages extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public GetCafeImages() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -48,12 +44,4 @@ public class GetCafeImages extends HttpServlet {
 		}
 
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	}
-
 }

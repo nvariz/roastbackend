@@ -1,38 +1,35 @@
+/**
+ * This class resides in webapps/roast/WEB-INF/classes on Tomcat server and allows servlets to query the food
+ * relation in the Roast DB and receive the query results as JSON.
+ * 
+ * @author Nicholas Variz
+ */
 
-
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class CafeGearDBServlet
- */
-public class CafeGearDBServlet extends HttpServlet {
+public class CafeFoodDBConnector extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      
-	private ArrayList<String> gearNames = new ArrayList<String>();
+     
+	private ArrayList<String> foodNames = new ArrayList<String>();
 	private ArrayList<String> descriptions = new ArrayList<String>();
 	private ArrayList<String> prices = new ArrayList<String>();
 	private ArrayList<String> imageNames = new ArrayList<String>();
 	private ArrayList<Integer> ids = new ArrayList<Integer>();
-	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CafeGearDBServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-    
-	private void queryDatabaseForCafeGear(String query, String filter){
+
+	/* 1) Connect to MySql database on port 3306 using user/pass = roastapp/roastapp
+	 * 2) Execute query passed in from servlet
+	 * 3) Call "filterResults" helper method to filter results and add to arraylist
+	 * 4) Close DB connection
+	 * 
+	 * TODO: Implement connection pooling, this implementation is highly inefficient
+	 */
+	private void queryDatabaseForCafeFood(String query, String filter){
 		Connection con = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -44,7 +41,7 @@ public class CafeGearDBServlet extends HttpServlet {
 		    stmt = con.createStatement();
 		    rs = stmt.executeQuery(query);
 			          
-		    String gearName = null;
+		    String foodName = null;
 			String description = null;
 			String price = null;
 			String imageName = null;
@@ -53,12 +50,12 @@ public class CafeGearDBServlet extends HttpServlet {
 			if (rs == null)
 				return;
 			else if(filter == null){
-				gearName = rs.getString("gearName");
-				gearNames.add(gearName);
+				foodName = rs.getString("foodName");
+				foodNames.add(foodName);
 			}
 			while (rs.next() ) {
-		        gearName = rs.getString("gearName");	  
-		        gearNames.add(gearName);
+		        foodName = rs.getString("foodName");	  
+		        foodNames.add(foodName);
 		        description = rs.getString("description");	  
 		        descriptions.add(description);
 		        price = rs.getString("price");	  
@@ -89,8 +86,14 @@ public class CafeGearDBServlet extends HttpServlet {
 
 	}
 	
-	public void getCafeGear(String cafe){
-		String query = "SELECT gearName,description,price,imageName,id FROM roast.gear where shopName like '%" + cafe + "%'";
-		queryDatabaseForCafeGear(query, "cafe");
+	/*
+	 * To Query Database for all food specified by string "cafe" send HTTP request to: 
+	 * "<EC2IP>:8080/roast/GetCafeFoods?cafe="<cafe contains search>""
+	 * This executes the following MYSQL query: "SELECT * FROM roast.food where name like '%" + cafe + "%'"
+	 * 
+	 */
+	public void getCafeFoods(String cafe){
+		String query = "SELECT foodName,description,price,imageName,id FROM roast.food where shopName like '%" + cafe + "%'";
+		queryDatabaseForCafeFood(query, "cafe");
 	}
 }

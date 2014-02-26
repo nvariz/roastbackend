@@ -1,4 +1,8 @@
-
+/**
+ * This servlet allows retrieval of tuples from the Roast.drinks relation via a REST API
+ * 
+ * @author Nicholas Variz
+ */
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,21 +19,13 @@ import com.google.gson.Gson;
  */
 public class GetCafeDrinks extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public GetCafeDrinks() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String d = request.getParameter("cafe");
-		CafeDrinkDBServlet driver = new CafeDrinkDBServlet();
+		CafeDrinkDBConnector driver = new CafeDrinkDBConnector();
 		driver.getCafeDrinks(d);
 		
 		PrintWriter out = response.getWriter();
@@ -37,13 +33,6 @@ public class GetCafeDrinks extends HttpServlet {
 		Gson gson = new Gson();
 		String json = gson.toJson(driver);
 		out.write(json);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }

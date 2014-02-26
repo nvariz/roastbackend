@@ -3,34 +3,16 @@
 <web-app id="WebApp_ID">
 	<display-name>RoastBackend</display-name>
 	<servlet>
-		<servlet-name>FindMyDrink</servlet-name>
-		<display-name>FindMyDrink</display-name>
+		<servlet-name>GetReview</servlet-name>
+		<display-name>GetReview</display-name>
 		<description></description>
-		<servlet-class>FindMyDrink</servlet-class>
+		<servlet-class>GetReview</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>FindACafe</servlet-name>
-		<display-name>FindACafe</display-name>
+		<servlet-name>InsertReview</servlet-name>
+		<display-name>InsertReview</display-name>
 		<description></description>
-		<servlet-class>FindACafe</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>ListAllDrinks</servlet-name>
-		<display-name>ListAllDrinks</display-name>
-		<description></description>
-		<servlet-class>ListAllDrinks</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>ListAllCafes</servlet-name>
-		<display-name>ListAllCafes</display-name>
-		<description></description>
-		<servlet-class>ListAllCafes</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>ModifyDrink</servlet-name>
-		<display-name>ModifyDrink</display-name>
-		<description></description>
-		<servlet-class>ModifyDrink</servlet-class>
+		<servlet-class>InsertReview</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>GetCafeDrinks</servlet-name>
@@ -51,43 +33,11 @@
 		<servlet-class>GetCafeImages</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>CafeFoodDBServlet</servlet-name>
-		<display-name>CafeFoodDBServlet</display-name>
-		<description></description>
-		<servlet-class>CafeFoodDBServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>CafeGearDBServlet</servlet-name>
-		<display-name>CafeGearDBServlet</display-name>
-		<description></description>
-		<servlet-class>CafeGearDBServlet</servlet-class>
-	</servlet>
-	<servlet>
 		<servlet-name>GetCafeGear</servlet-name>
 		<display-name>GetCafeGear</display-name>
 		<description></description>
 		<servlet-class>GetCafeGear</servlet-class>
 	</servlet>
-	<servlet-mapping>
-		<servlet-name>FindMyDrink</servlet-name>
-		<url-pattern>/FindMyDrink</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>FindACafe</servlet-name>
-		<url-pattern>/FindACafe</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>ListAllDrinks</servlet-name>
-		<url-pattern>/ListAllDrinks</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>ListAllCafes</servlet-name>
-		<url-pattern>/ListAllCafes</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>ModifyDrink</servlet-name>
-		<url-pattern>/ModifyDrink</url-pattern>
-	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>GetCafeDrinks</servlet-name>
 		<url-pattern>/GetCafeDrinks</url-pattern>
@@ -101,18 +51,17 @@
 		<url-pattern>/GetCafeImages</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>CafeFoodDBServlet</servlet-name>
-		<url-pattern>/CafeFoodDBServlet</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>CafeGearDBServlet</servlet-name>
-		<url-pattern>/CafeGearDBServlet</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
 		<servlet-name>GetCafeGear</servlet-name>
 		<url-pattern>/GetCafeGear</url-pattern>
 	</servlet-mapping>
-	
+	<servlet-mapping>
+		<servlet-name>InsertReview</servlet-name>
+		<url-pattern>/PutReview</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetReview</servlet-name>
+		<url-pattern>/GetReview</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>

@@ -1,6 +1,6 @@
 /**
- * This class resides in webapps/roast/WEB-INF/classes on Tomcat server and allows servlets to query the database
- * and receive the query results as JSON.
+ * This class resides in webapps/roast/WEB-INF/classes on Tomcat server and allows servlets to query the drink
+ * relation in the Roast DB and receive the query results as JSON.
  * 
  * @author Nicholas Variz
  */
@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class CafeDrinkDBServlet {
+public class CafeDrinkDBConnector {
 
 	//This result will be used converted to JSON by the calling Servlet
 	private ArrayList<String> drinkNames = new ArrayList<String>();
@@ -62,7 +62,6 @@ public class CafeDrinkDBServlet {
 		        imageNames.add(imageName);
 		        id = rs.getInt("id");
 		        ids.add(id);
-		        
 		   }
 		    
 		   } catch (Exception e) {
@@ -86,7 +85,7 @@ public class CafeDrinkDBServlet {
 	}
 	
 	/*
-	 * To Query Database for any drink containing the string "drink" send HTTP request to: 
+	 * To Query Database for all drinks specified by string "cafe" send HTTP request to: 
 	 * "<EC2IP>:8080/roast/GetCafeDrinks?cafe="<cafe contains search>""
 	 * This executes the following MYSQL query: "SELECT * FROM roast.drinks where name like '%" + cafe + "%'"
 	 * 
