@@ -20,7 +20,7 @@ public class CafeGearDBConnector extends HttpServlet {
 	private ArrayList<String> descriptions = new ArrayList<String>();
 	private ArrayList<String> prices = new ArrayList<String>();
 	private ArrayList<String> imageNames = new ArrayList<String>();
-	private ArrayList<Integer> ids = new ArrayList<Integer>();
+	private ArrayList<String> ids = new ArrayList<String>();
     
 	/* 1) Connect to MySql database on port 3306 using user/pass = roastapp/roastapp
 	 * 2) Execute query passed in from servlet
@@ -45,7 +45,7 @@ public class CafeGearDBConnector extends HttpServlet {
 			String description = null;
 			String price = null;
 			String imageName = null;
-			int id;
+			String id = null;
 			
 			if (rs == null)
 				return;
@@ -62,7 +62,7 @@ public class CafeGearDBConnector extends HttpServlet {
 		        prices.add(price);
 		        imageName = rs.getString("imageName");
 		        imageNames.add(imageName);
-		        id = rs.getInt("id");
+		        id = rs.getString("id");
 		        ids.add(id);
 		   }
 		    
