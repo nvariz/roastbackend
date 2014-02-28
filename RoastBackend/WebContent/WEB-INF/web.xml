@@ -38,6 +38,12 @@
 		<description></description>
 		<servlet-class>GetCafeGear</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>GetCarouselFilenames</servlet-name>
+		<display-name>GetCarouselFilenames</display-name>
+		<description></description>
+		<servlet-class>GetCarouselFilenames</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>GetCafeDrinks</servlet-name>
 		<url-pattern>/GetCafeDrinks</url-pattern>
@@ -61,6 +67,10 @@
 	<servlet-mapping>
 		<servlet-name>GetReview</servlet-name>
 		<url-pattern>/GetReview</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetCarouselFilenames</servlet-name>
+		<url-pattern>/GetCarouselFilenames</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
