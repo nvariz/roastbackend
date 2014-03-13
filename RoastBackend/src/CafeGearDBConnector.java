@@ -53,6 +53,7 @@ public class CafeGearDBConnector extends HttpServlet {
 				gearName = rs.getString("gearName");
 				gearNames.add(gearName);
 			}
+			
 			while (rs.next() ) {
 		        gearName = rs.getString("gearName");	  
 		        gearNames.add(gearName);

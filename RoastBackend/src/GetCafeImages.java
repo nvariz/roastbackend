@@ -33,9 +33,11 @@ public class GetCafeImages extends HttpServlet {
 			BufferedInputStream bis = new BufferedInputStream(inputStream);
 			response.setContentType("image/jpeg");
 			BufferedOutputStream output = new BufferedOutputStream(response.getOutputStream());
+			
 			for (int data; (data = bis.read()) > -1;) {
 				output.write(data);
 			}
+			
 			output.flush();
 			bis.close();
 			output.close();

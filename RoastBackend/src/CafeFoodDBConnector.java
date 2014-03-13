@@ -53,6 +53,7 @@ public class CafeFoodDBConnector extends HttpServlet {
 				foodName = rs.getString("foodName");
 				foodNames.add(foodName);
 			}
+			
 			while (rs.next() ) {
 		        foodName = rs.getString("foodName");	  
 		        foodNames.add(foodName);

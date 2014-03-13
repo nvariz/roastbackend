@@ -51,6 +51,7 @@ public class CafeDrinkDBConnector {
 				drinkName = rs.getString("drinkName");
 				drinkNames.add(drinkName);
 			}
+			
 			while (rs.next() ) {
 		        drinkName = rs.getString("drinkName");	  
 		        drinkNames.add(drinkName);
